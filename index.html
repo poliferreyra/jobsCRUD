@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <title>JobsCRUD</title>
+  </head>
+  <body>
+    <!--***********************  navbar ***********************************************-->
+    <header>
+      <nav
+        class="navbar is-success "
+        role="navigation"
+        aria-label="main navigation"
+      >
+        <div class="navbar-brand">
+          <h1 class="navbar-item is-size-5 has-text-info-light">Careers</h1>
+          <a class="navbar-item"> Home </a>
+
+          <a class="navbar-item create-job-nav"> Create Jobs </a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ********************* search form ****************************************-->
+      <form class="container mt-3">
+        <div class="columns mx-4">
+          <div class="column">
+            <div class="field">
+              <div class="control">
+                <div class="select is-small is-fullwidth">
+                  <select>
+                    <option>Location</option>
+                    <option>With options</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <div class="control">
+                <div class="select is-small is-fullwidth">
+                  <select>
+                    <option>Seniority</option>
+                    <option>With options</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <div class="control">
+                <div class="select is-small is-fullwidth">
+                  <select>
+                    <option>Category</option>
+                    <option>With options</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="buttons are-small">
+              <button class="button is-warning" type="submit">Search</button>
+              <button class="button is-info is-outlined">Clear</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!--********************** jobs container ***************************************-->
+      <div id="container" class="container mt-3"></div>
+
+      <!-- ********************* jobs registration form modal *******************************-->
+      <div class="modal">
+        <div class="modal-background has-background-white"></div>
+        <div class="modal-content">
+          <form class="container mx-4" id="create-job">
+            <div class="field">
+              <label class="label">Job Name</label>
+              <div class="control">
+                <input
+                  class="input is-small"
+                  type="text"
+                  placeholder="e.j FrontEnd Developer"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Description</label>
+              <div class="control">
+                <input
+                  class="input is-small"
+                  type="email"
+                  placeholder="Job description"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Location</label>
+              <div class="control">
+                <input
+                  class="input is-small"
+                  type="email"
+                  placeholder="e.j Argentina"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Category</label>
+              <div class="control">
+                <input
+                  class="input is-small"
+                  type="email"
+                  placeholder="e.j XX"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Seniority</label>
+              <div class="control">
+                <input
+                  class="input is-small"
+                  type="email"
+                  placeholder="e.j Junior"
+                />
+              </div>
+            </div>
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-primary is-small" type="submit">
+                  Create
+                </button>
+              </div>
+              <div class="control">
+                <button class="button is-primary is-light is-small">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <button
+          class="modal-close is-small has-background-danger"
+          aria-label="close"
+        ></button>
+      </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/post.js"></script>
+    <script src="js/get.js"></script>
+    <script src="js/put.js"></script>
+    <script src="js/delete.js"></script>
+  </body>
+</html>
