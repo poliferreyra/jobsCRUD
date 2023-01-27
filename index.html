@@ -82,7 +82,6 @@
         id="container-job-positions"
         class="container mt-3 is-flex is-flex-wrap-wrap"
       ></div>
-
       <!-- ********************* jobs registration form modal *******************************-->
       <div class="modal jobsRegister">
         <div class="modal-background has-background-white"></div>
@@ -92,7 +91,7 @@
               <label class="label">Job Name</label>
               <div class="control">
                 <input
-                id="registerJobName"
+                  id="registerJobName"
                   class="input is-small"
                   type="text"
                   placeholder="e.j FrontEnd Developer"
@@ -103,7 +102,7 @@
               <label class="label">Description</label>
               <div class="control">
                 <input
-                id="registerDescription"
+                  id="registerDescription"
                   class="input is-small"
                   type="text"
                   placeholder="Job description"
@@ -114,7 +113,7 @@
               <label class="label">Location</label>
               <div class="control">
                 <input
-                id="registerLocation"
+                  id="registerLocation"
                   class="input is-small"
                   type="text"
                   placeholder="e.j Argentina"
@@ -125,7 +124,7 @@
               <label class="label">Category</label>
               <div class="control">
                 <input
-                id="registerCategory"
+                  id="registerCategory"
                   class="input is-small"
                   type="text"
                   placeholder="e.j XX"
@@ -136,7 +135,7 @@
               <label class="label">Seniority</label>
               <div class="control">
                 <input
-                id="registerSeniority"
+                  id="registerSeniority"
                   class="input is-small"
                   type="text"
                   placeholder="e.j Junior"
@@ -167,8 +166,16 @@
           aria-label="close"
         ></button>
       </div>
+      <!-- **************************** edit/delete jobs ******************** -->
+      <div class="see-detail mt-4"></div>
 
-    </main>
+      <!-- ******************** confirm job delete notification card *************** -->
+      <div class="notification is-danger is-light container-notification is-hidden mt-6">
+        Are you sure to delete this job?
+        <button class="ml-3 is-small button is-danger btn-confirm-delete">Delete</button>
+        <button class="ml-3 is-small button is-dark">Cancel</button>
+     </div>
+    </main> 
 
     <script src="js/get.js"></script>
     <script src="js/main.js"></script>
