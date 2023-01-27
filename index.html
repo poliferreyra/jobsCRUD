@@ -92,6 +92,7 @@
               <label class="label">Job Name</label>
               <div class="control">
                 <input
+                id="registerJobName"
                   class="input is-small"
                   type="text"
                   placeholder="e.j FrontEnd Developer"
@@ -102,8 +103,9 @@
               <label class="label">Description</label>
               <div class="control">
                 <input
+                id="registerDescription"
                   class="input is-small"
-                  type="email"
+                  type="text"
                   placeholder="Job description"
                 />
               </div>
@@ -112,8 +114,9 @@
               <label class="label">Location</label>
               <div class="control">
                 <input
+                id="registerLocation"
                   class="input is-small"
-                  type="email"
+                  type="text"
                   placeholder="e.j Argentina"
                 />
               </div>
@@ -122,8 +125,9 @@
               <label class="label">Category</label>
               <div class="control">
                 <input
+                id="registerCategory"
                   class="input is-small"
-                  type="email"
+                  type="text"
                   placeholder="e.j XX"
                 />
               </div>
@@ -132,8 +136,9 @@
               <label class="label">Seniority</label>
               <div class="control">
                 <input
+                id="registerSeniority"
                   class="input is-small"
-                  type="email"
+                  type="text"
                   placeholder="e.j Junior"
                 />
               </div>
@@ -149,6 +154,11 @@
                   Cancel
                 </button>
               </div>
+              <div class="control">
+                <button class="button is-primary is-small is-hidden">
+                  Edit
+                </button>
+              </div>
             </div>
           </form>
         </div>
@@ -157,10 +167,11 @@
           aria-label="close"
         ></button>
       </div>
+
     </main>
 
-    <script src="js/main.js"></script>
     <script src="js/get.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/post.js"></script>
     <script src="js/put.js"></script>
     <script src="js/delete.js"></script>

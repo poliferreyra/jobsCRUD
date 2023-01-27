@@ -1,14 +1,21 @@
 const registerJobs = async () => {
+    const newJob = {
+        jobName: $inputRegisterJobName.value,
+        description: $inputRegisterDescription.value,
+        location: $inputRegisterLocation.value,
+        category: $inputRegisterCategory.value,
+        seniority: $inputRegisterSeniority.value
+      };
     try {
         const response = await fetch(`${BASE_URL}/jobs`, {
             method: "POST",
             headers: {
-                "Content-Type":"Aplication/json",
+                "Content-Type":"Application/json",
             },
             body:JSON.stringify(newJob)
         })
-        const data = await response.json()
-        console.log(data)
+        const job = await response.json()
+ 
     } catch (error) {
         console.log(error)
     }
