@@ -5,8 +5,12 @@ const getJobPositions = async () => {
     const response = await fetch(`${BASE_URL}jobs`);
     const jobs = await response.json();
     renderJobsCards(jobs);
-  } catch (error) {
+    optionsSearchForm(jobs)
+    } catch (error) {
     console.log(error);
   }
 };
 getJobPositions();
+
+
+
