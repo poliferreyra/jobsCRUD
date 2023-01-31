@@ -76,37 +76,52 @@ const openEditDelete = (id) => {
   </div>
 </div>
 `;
-// delete select job
-$(".btn-confirm-delete").addEventListener("click", ()=>{
-  // toma el id por el atributo (data-id) que le dimos al button
-deleteJob(($(".btn-delete").getAttribute("data-id")));
-$(".container-notification").classList.add("is-hidden");
-$seeDetail.classList.add("is-hidden");
-$jobPositions.classList.remove("is-hidden");
-})
+  // delete select job
+  $(".btn-confirm-delete").addEventListener("click", () => {
+    // toma el id por el atributo (data-id) que le dimos al button
+    deleteJob($(".btn-delete").getAttribute("data-id"));
+    $(".container-notification").classList.add("is-hidden");
+    $seeDetail.classList.add("is-hidden");
+    $jobPositions.classList.remove("is-hidden");
+  });
 };
 // confirm delete notification
-const openNotification =()=>{
+const openNotification = () => {
   $(".container-notification").classList.remove("is-hidden");
-}
+};
 // options search form
-const optionsSearchForm = async (jobs)=>{
+const optionsSearchForm = (jobs) => {
   // category without duplicates
-  const filterCategory = jobs.map((category)=>category.category)
-  const setFilterCategory = new Set(filterCategory)
-  console.log(setFilterCategory)
+  const filterCategory = jobs.map((category) => category.category);
+  const setFilterCategory = new Set(filterCategory);
   // location without duplicates
-  const filterLocation = jobs.map((location)=>location.location)
-  const setFilterLocation = new Set(filterLocation)
-  console.log(setFilterLocation)
+  const filterLocation = jobs.map((location) => location.location);
+  const setFilterLocation = new Set(filterLocation);
   // seniority without duplicates
-  const filterSeniority = jobs.map((seniority)=>seniority.seniority)
-  const setFilterSeniority = new Set(filterSeniority)
-  console.log(setFilterSeniority)
-  // options select
-}
-
-
+  const filterSeniority = jobs.map((seniority) => seniority.seniority);
+  const setFilterSeniority = new Set(filterSeniority);
+  // options select category
+  $filterCategory.innerHTML = "";
+  for (const category of setFilterCategory) {
+    $filterCategory.innerHTML += `
+    <option>${category}</option>
+    `;
+  }
+  // options select location
+  $filterLocation.innerHTML = "";
+  for (const location of setFilterLocation) {
+    $filterLocation.innerHTML += `
+    <option>${location}</option>
+    `;
+  }
+  // options select seniority
+  $filterSeniority.innerHTML = "";
+  for (const seniority of setFilterSeniority) {
+    $filterSeniority.innerHTML += `
+    <option>${seniority}</option>
+    `;
+  }
+};
 
 // ************************* events **********************************
 $formCreateJobs.addEventListener("submit", (e) => {
