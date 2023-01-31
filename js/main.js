@@ -14,7 +14,7 @@ const $seeDetail = $(".see-detail");
 const openJobsModal = () => {
   $createJob.classList.add("is-active");
 };
-// render all active jobs
+// render active jobs
 const renderJobsCards = (jobs) => {
   for (const {
     jobName,
@@ -25,26 +25,35 @@ const renderJobsCards = (jobs) => {
     id,
   } of jobs) {
     $jobPositions.innerHTML += `
-    <div class="card has-background-primary-light m-5 p-4">
-      <h3 class="is-size-4">${jobName}</h3>
-      <p class="content">${description}</p>
-      <span class="tag is-info">${location}</span>
-      <span class="tag is-info">${category}</span>
-      <span class="tag is-info">${seniority}</span>
-    <div>
-      <button class="button is-small is-responsive is-primary mt-3" onclick="openEditDelete(${id})">See Details</button>
-    </div>
+    <div
+      class="card column is-one-quarter is-size-7 has-background-primary-light m-2 p-5">
+      <h3 class="is-size-6 has-text-weight-semibold">${jobName}</h3>
+      <p>${description}</p>
+      <div class="columns">
+        <div class="column">
+          <span class="tag is-info my-1">${location}</span>
+          <span class="tag is-info my-1">${category}</span>
+          <span class="tag is-info my-1">${seniority}</span>
+        </div>
+      </div>
+      <div>
+        <button
+          class="button is-small is-responsive is-primary"
+          onclick="openEditDelete(${id})">
+          See Details
+        </button>
+      </div>
     </div>
     `;
   }
 };
-// open job card a editar o eliminar
+// open job card to edit or delete
 const openEditDelete = (id) => {
   $jobPositions.classList.add("is-hidden");
   $seeDetail.innerHTML += `
 <div class="card has-background-warning-light p-3">
-  <h3 class="is-size-4">JobName</h3>
-  <p class="content">
+  <h3 class="is-size-4">titulo</h3>
+  <p>
     Lorem ipsum dolor sit, amet consectetur adipisicingelit. Maxime, cumque?
   </p>
   <span class="tag is-info">Location</span>
@@ -59,13 +68,11 @@ const openEditDelete = (id) => {
 // delete select job
 $(".btn-confirm-delete").addEventListener("click", ()=>{
   // toma el id por el atributo que le dimos al button
-deleteJob(($(".btn-delete").getAttribute("data-id")))
+deleteJob(($(".btn-delete").getAttribute("data-id")));
 $(".container-notification").classList.add("is-hidden");
-$seeDetail.classList.add("is-hidden")
+$seeDetail.classList.add("is-hidden");
 $jobPositions.classList.remove("is-hidden");
-
 })
-
 };
 // confirm delete notification
 const openNotification =()=>{
@@ -75,7 +82,6 @@ const openNotification =()=>{
 $formCreateJobs.addEventListener("submit", (e) => {
   e.preventDefault();
   registerJobs();
-
 });
 $createJobNav.addEventListener("click", openJobsModal);
 
