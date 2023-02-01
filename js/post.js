@@ -17,11 +17,11 @@ const registerJobs = async () => {
 };
 const registerJobForm = ()=>{
   const newJob = {
-    jobName: $("#registerJobName").value,
-    description: $("#registerDescription").value,
-    location: $("#registerLocation").value,
-    category: $("#registerCategory").value,
-    seniority: $("#registerSeniority").value,
+    jobName: $registerJobName.value,
+    description: $registerDescription.value,
+    location: $registerLocation.value,
+    category: $registerCategory.value,
+    seniority: $registerSeniority.value,
   }
   return newJob
 };

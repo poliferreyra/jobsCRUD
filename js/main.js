@@ -10,8 +10,14 @@ const $seeDetail = $(".see-detail");
 const $filterSeniority = $("#filterSeniority");
 const $filterCategory = $("#filterCategory");
 const $filterLocation = $("#filterLocation");
-const $btnCreateJob = $(".btn-create-job")
+const $btnCreateJob = $(".btn-create-job");
+const $btnEditJob = $(".btn-edit-job");
 const $searchForm = $(".searchForm");
+const $registerJobName = $("#registerJobName");
+const $registerDescription = $("#registerDescription");
+const $registerLocation = $("#registerLocation");
+const $registerCategory= $("#registerCategory");
+const $registerSeniority = $("#registerSeniority");
 
 // ************************** functions ****************************
 // open form register jobs
@@ -43,7 +49,7 @@ const renderJobsCards = (jobs) => {
       <div>
         <button
           class="button is-small is-responsive is-primary"
-          onclick="onclickSeeDetail(${id})">
+          onclick="onclickBtnSeeDetail(${id})">
           See Details
         </button>
       </div>
@@ -51,30 +57,31 @@ const renderJobsCards = (jobs) => {
     `;
   }
 };
-
-const onclickSeeDetail = async (id) =>{
-  const job = await editJob(id)
+// fetch and show modal edit/delete
+const onclickBtnSeeDetail = async (id) =>{
+  const job = await getJob(id)
   modalEditDelete(job)
 };
 // open edit or delete job
-const modalEditDelete = (dato) => {
+const modalEditDelete = (data) => {
   $searchForm.classList.add("is-hidden");
   $jobPositions.classList.add("is-hidden");
   $seeDetail.innerHTML += `
   <div class="card has-background-warning-light p-4">
-  <h3 class="is-size-4">${dato.jobName}</h3>
-  <p>${dato.description}</p>
-  <span class="tag is-info mt-4">${dato.location}</span>
-  <span class="tag is-info mt-4">${dato.category}</span>
-  <span class="tag is-info mt-4">${dato.seniority}</span>
+  <h3 class="is-size-4">${data.jobName}</h3>
+  <p>${data.description}</p>
+  <span class="tag is-info mt-4">${data.location}</span>
+  <span class="tag is-info mt-4">${data.category}</span>
+  <span class="tag is-info mt-4">${data.seniority}</span>
   <div>
   <button
-  class="button is-small is-responsive is-primary mt-3 btn-edit" data-id=${dato.id}>
+  class="button is-small is-responsive is-primary mt-3 btn-edit" data-id=${data.id}
+  onclick="editJob(${data.id})">
   Edit Job
   </button>
   <button
   class="button is-small is-responsive is-danger mt-3 btn-delete"
-  data-id=${dato.id}
+  data-id=${data.id}
   onclick="openNotification()">
   Delete Job
   </button>
@@ -90,10 +97,29 @@ const modalEditDelete = (dato) => {
     $jobPositions.classList.remove("is-hidden");
   });
 };
-// confirm delete notification
+// delete notification
 const openNotification = () => {
   $(".container-notification").classList.remove("is-hidden");
 };
+
+// edit and update select job
+const editJob = async (id)=>{
+  const job = await getJob(id)
+  const {
+    jobName,
+    description,
+    location,
+    category,
+    seniority} = job
+  $createJob.classList.add("is-active");
+  $btnEditJob.classList.remove("is-hidden");
+  $btnCreateJob.classList.add("is-hidden");
+  $registerJobName.value = jobName
+  $registerDescription.value = description
+  $registerLocation.value = location
+  $registerCategory.value= category
+  $registerSeniority.value = seniority
+}
 // options search form  
 const optionsSearchForm = (jobs) => {
   // category without duplicates

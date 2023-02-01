@@ -12,7 +12,7 @@ const getJobPositions = async () => {
 };
 getJobPositions();
 
-const editJob = async (id)=>{
+const getJob = async (id)=>{
   try {
     const response = await fetch(`${BASE_URL}jobs/${id}`);
     const job = await response.json()
