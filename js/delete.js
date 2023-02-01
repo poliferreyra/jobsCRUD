@@ -1,6 +1,6 @@
 const deleteJob = async (id)=>{
     try {
-        await fetch(`${BASE_URL}/jobs/${id}`, {
+        await fetch(`${BASE_URL}jobs/${id}`, {
             method: "DELETE"
         })
         

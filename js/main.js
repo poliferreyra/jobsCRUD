@@ -1,5 +1,4 @@
 const $ = (selector) => document.querySelector(selector);
-const $$ = (selector) => document.querySelectorAll(selector);
 
 //**************************** DOM *********************************
 const $createJobNav = $(".create-job-nav");
@@ -11,6 +10,9 @@ const $seeDetail = $(".see-detail");
 const $filterSeniority = $("#filterSeniority");
 const $filterCategory = $("#filterCategory");
 const $filterLocation = $("#filterLocation");
+const $btnCreateJob = $(".btn-create-job")
+const $searchForm = $(".searchForm");
+
 // ************************** functions ****************************
 // open form register jobs
 const openJobsModal = () => {
@@ -41,7 +43,7 @@ const renderJobsCards = (jobs) => {
       <div>
         <button
           class="button is-small is-responsive is-primary"
-          onclick="openEditDelete(${id})">
+          onclick="onclickSeeDetail(${id})">
           See Details
         </button>
       </div>
@@ -49,34 +51,37 @@ const renderJobsCards = (jobs) => {
     `;
   }
 };
-// open job card to edit or delete
-const openEditDelete = (id) => {
+
+const onclickSeeDetail = async (id) =>{
+  const job = await editJob(id)
+  modalEditDelete(job)
+};
+// open edit or delete job
+const modalEditDelete = (dato) => {
+  $searchForm.classList.add("is-hidden");
   $jobPositions.classList.add("is-hidden");
   $seeDetail.innerHTML += `
-  <div class="card has-background-warning-light p-3">
-  <h3 class="is-size-4">titulo</h3>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicingelit. Maxime, cumque?
-  </p>
-  <span class="tag is-info">Location</span>
-  <span class="tag is-info">Categoria</span>
-  <span class="tag is-info">Seniority</span>
+  <div class="card has-background-warning-light p-4">
+  <h3 class="is-size-4">${dato.jobName}</h3>
+  <p>${dato.description}</p>
+  <span class="tag is-info mt-4">${dato.location}</span>
+  <span class="tag is-info mt-4">${dato.category}</span>
+  <span class="tag is-info mt-4">${dato.seniority}</span>
   <div>
-    <button
-      class="button is-small is-responsive is-primary mt-3 btn-edit"
-      data-id="${id}">
-      Edit Job
-    </button>
-    <button
-      class="button is-small is-responsive is-danger mt-3 btn-delete"
-      data-id="${id}"
-      onclick="openNotification(${id})">
-      Delete Job
-    </button>
+  <button
+  class="button is-small is-responsive is-primary mt-3 btn-edit" data-id=${dato.id}>
+  Edit Job
+  </button>
+  <button
+  class="button is-small is-responsive is-danger mt-3 btn-delete"
+  data-id=${dato.id}
+  onclick="openNotification()">
+  Delete Job
+  </button>
   </div>
-</div>
-`;
-  // delete select job
+  </div>
+  `;
+// delete select job
   $(".btn-confirm-delete").addEventListener("click", () => {
     // toma el id por el atributo (data-id) que le dimos al button
     deleteJob($(".btn-delete").getAttribute("data-id"));
@@ -89,7 +94,7 @@ const openEditDelete = (id) => {
 const openNotification = () => {
   $(".container-notification").classList.remove("is-hidden");
 };
-// options search form
+// options search form  
 const optionsSearchForm = (jobs) => {
   // category without duplicates
   const filterCategory = jobs.map((category) => category.category);
@@ -101,21 +106,21 @@ const optionsSearchForm = (jobs) => {
   const filterSeniority = jobs.map((seniority) => seniority.seniority);
   const setFilterSeniority = new Set(filterSeniority);
   // options select category
-  $filterCategory.innerHTML = "";
+  $filterCategory.innerHTML = "<option>Todas</option>";
   for (const category of setFilterCategory) {
     $filterCategory.innerHTML += `
     <option>${category}</option>
     `;
   }
   // options select location
-  $filterLocation.innerHTML = "";
+  $filterLocation.innerHTML = "<option>Todas</option>";
   for (const location of setFilterLocation) {
     $filterLocation.innerHTML += `
     <option>${location}</option>
     `;
   }
   // options select seniority
-  $filterSeniority.innerHTML = "";
+  $filterSeniority.innerHTML = "<option>Todas</option>";
   for (const seniority of setFilterSeniority) {
     $filterSeniority.innerHTML += `
     <option>${seniority}</option>
@@ -123,8 +128,11 @@ const optionsSearchForm = (jobs) => {
   }
 };
 
+const mainView = ()=>{
+  window.location.href ="index.html"
+}
 // ************************* events **********************************
-$formCreateJobs.addEventListener("submit", (e) => {
+$btnCreateJob.addEventListener("submit", (e) => {
   e.preventDefault();
   registerJobs();
 });
@@ -133,3 +141,4 @@ $createJobNav.addEventListener("click", openJobsModal);
 $modalClose.addEventListener("click", () => {
   $createJob.classList.remove("is-active");
 });
+
