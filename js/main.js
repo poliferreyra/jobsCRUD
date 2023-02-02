@@ -16,7 +16,7 @@ const $searchForm = $(".searchForm");
 const $registerJobName = $("#registerJobName");
 const $registerDescription = $("#registerDescription");
 const $registerLocation = $("#registerLocation");
-const $registerCategory= $("#registerCategory");
+const $registerCategory = $("#registerCategory");
 const $registerSeniority = $("#registerSeniority");
 
 // ************************** functions ****************************
@@ -58,9 +58,9 @@ const renderJobsCards = (jobs) => {
   }
 };
 // fetch and show modal edit/delete
-const onclickBtnSeeDetail = async (id) =>{
-  const job = await getJob(id)
-  modalEditDelete(job)
+const onclickBtnSeeDetail = async (id) => {
+  const job = await getJob(id);
+  modalEditDelete(job);
 };
 // open edit or delete job
 const modalEditDelete = (data) => {
@@ -88,7 +88,7 @@ const modalEditDelete = (data) => {
   </div>
   </div>
   `;
-// delete select job
+  // delete select job
   $(".btn-confirm-delete").addEventListener("click", () => {
     // toma el id por el atributo (data-id) que le dimos al button
     deleteJob($(".btn-delete").getAttribute("data-id"));
@@ -102,25 +102,20 @@ const openNotification = () => {
   $(".container-notification").classList.remove("is-hidden");
 };
 
-// edit and update select job
-const editJob = async (id)=>{
-  const job = await getJob(id)
-  const {
-    jobName,
-    description,
-    location,
-    category,
-    seniority} = job
+// edit select job
+const editJob = async (id) => {
+  const job = await getJob(id);
+  const { jobName, description, location, category, seniority } = job;
   $createJob.classList.add("is-active");
   $btnEditJob.classList.remove("is-hidden");
   $btnCreateJob.classList.add("is-hidden");
-  $registerJobName.value = jobName
-  $registerDescription.value = description
-  $registerLocation.value = location
-  $registerCategory.value= category
-  $registerSeniority.value = seniority
-}
-// options search form  
+  $registerJobName.value = jobName;
+  $registerDescription.value = description;
+  $registerLocation.value = location;
+  $registerCategory.value = category;
+  $registerSeniority.value = seniority;
+};
+// options search form
 const optionsSearchForm = (jobs) => {
   // category without duplicates
   const filterCategory = jobs.map((category) => category.category);
@@ -154,11 +149,11 @@ const optionsSearchForm = (jobs) => {
   }
 };
 
-const mainView = ()=>{
-  window.location.href ="index.html"
-}
+const mainView = () => {
+  window.location.href = "index.html";
+};
 // ************************* events **********************************
-$btnCreateJob.addEventListener("submit", (e) => {
+$formCreateJobs.addEventListener("submit", (e) => {
   e.preventDefault();
   registerJobs();
 });
@@ -167,4 +162,3 @@ $createJobNav.addEventListener("click", openJobsModal);
 $modalClose.addEventListener("click", () => {
   $createJob.classList.remove("is-active");
 });
-
