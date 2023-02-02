@@ -20,6 +20,8 @@ const $registerCategory = $("#registerCategory");
 const $registerSeniority = $("#registerSeniority");
 
 // ************************** functions ****************************
+// to know if is Editing or not
+let isEditing = false;
 // open form register jobs
 const openJobsModal = () => {
   $createJob.classList.add("is-active");
@@ -106,14 +108,15 @@ const openNotification = () => {
 const editJob = async (id) => {
   const job = await getJob(id);
   const { jobName, description, location, category, seniority } = job;
+  isEditing = true;
   $createJob.classList.add("is-active");
-  $btnEditJob.classList.remove("is-hidden");
-  $btnCreateJob.classList.add("is-hidden");
+  $btnCreateJob.textContent = "Edit";
   $registerJobName.value = jobName;
   $registerDescription.value = description;
   $registerLocation.value = location;
   $registerCategory.value = category;
   $registerSeniority.value = seniority;
+  $btnCreateJob.setAttribute("data-id", id)
 };
 // options search form
 const optionsSearchForm = (jobs) => {
@@ -155,7 +158,12 @@ const mainView = () => {
 // ************************* events **********************************
 $formCreateJobs.addEventListener("submit", (e) => {
   e.preventDefault();
-  registerJobs();
+  if (isEditing) {
+    const jobId = $btnCreateJob.getAttribute("data-id")
+    updateJob(jobId);
+  } else {
+    registerJobs();
+  }
 });
 $createJobNav.addEventListener("click", openJobsModal);
 

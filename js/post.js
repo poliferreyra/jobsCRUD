@@ -1,7 +1,7 @@
 const registerJobs = async () => {
   const newJob = registerJobForm();
   try {
-    const response = await fetch(`${BASE_URL}/jobs`, {
+    const response = await fetch(`${BASE_URL}jobs`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
