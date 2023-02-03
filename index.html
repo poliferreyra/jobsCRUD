@@ -39,7 +39,9 @@
             <div class="field">
               <div class="control">
                 <div class="select is-small is-fullwidth">
-                  <select id="filterLocation"></select>
+                  <select id="filterLocation">
+                    <option value="location">All Locations</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -48,7 +50,9 @@
             <div class="field">
               <div class="control">
                 <div class="select is-small is-fullwidth">
-                  <select id="filterSeniority"></select>
+                  <select id="filterSeniority">
+                    <option value="seniority">All Senioritys</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -57,15 +61,22 @@
             <div class="field">
               <div class="control">
                 <div class="select is-small is-fullwidth">
-                  <select id="filterCategory"></select>
+                  <select id="filterCategory">
+                    <option value="category">All Categorys</option>
+                  </select>
                 </div>
               </div>
             </div>
           </div>
           <div class="column">
             <div class="buttons are-small">
-              <button class="button is-warning" type="submit">Search</button>
-              <button class="button is-info is-outlined">Clear</button>
+              <button class="button is-warning btn-search" type="submit">Search</button>
+              <button
+                class="button is-info is-outlined btn-clear"
+                type="button"
+              >
+                Clear
+              </button>
             </div>
           </div>
         </div>
@@ -139,7 +150,10 @@
             </div>
             <div class="field is-grouped">
               <div class="control">
-                <button class="button is-info is-small btn-create-job" type="submit">
+                <button
+                  class="button is-info is-small btn-create-job"
+                  type="submit"
+                >
                   Create
                 </button>
               </div>
@@ -182,5 +196,6 @@
     <script src="js/post.js"></script>
     <script src="js/put.js"></script>
     <script src="js/delete.js"></script>
+
   </body>
 </html>
