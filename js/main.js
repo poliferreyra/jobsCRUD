@@ -192,13 +192,14 @@ const formValidation = () => {
 $formCreateJobs.addEventListener("submit", (e) => {
   e.preventDefault();
   if (!formValidation()) {
-    alert("You must complete all field");
+    $(".validation").classList.remove("is-hidden");
     return;
   }
   if (isEditing) {
     const jobId = $btnCreateJob.getAttribute("data-id");
     updateJob(jobId);
   } else {
+    $(".validation").classList.add("is-hidden");
     registerJobs();
   }
 });
