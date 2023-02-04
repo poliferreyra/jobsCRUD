@@ -159,76 +159,46 @@ const searchJobs = async () => {
     filterJobs = filterJobs.filter(
       (job) => job.location === $filterLocation.value
     );
-
   if ($filterSeniority.value !== "seniority") {
     filterJobs = filterJobs.filter(
-      (job) =>
-        job.location === $filterLocation.value &&
-        job.seniority === $filterSeniority.value
+      (job) => job.seniority === $filterSeniority.value
     );
   }
   if ($filterCategory.value !== "category") {
     filterJobs = filterJobs.filter(
-      (job) =>
-        job.location === $filterLocation.value &&
-        job.category === $filterCategory.value
+      (job) => job.category === $filterCategory.value
     );
   }
   // render filterJobs
   $jobPositions.innerHTML = "";
-  for (const {
-    jobName,
-    description,
-    location,
-    category,
-    seniority,
-    id,
-  } of filterJobs) {
-    $jobPositions.innerHTML += `
-      <div
-        class="card column is-one-quarter is-size-7 has-background-primary-light m-2 p-5">
-        <h3 class="is-size-6 has-text-weight-semibold">${jobName}</h3>
-        <p>${description}</p>
-        <div class="columns">
-          <div class="column">
-            <span class="tag is-info my-1">${location}</span>
-            <span class="tag is-info my-1">${category}</span>
-            <span class="tag is-info my-1">${seniority}</span>
-          </div>
-        </div>
-        <div>
-          <button
-            class="button is-small is-responsive is-primary"
-            onclick="onclickBtnSeeDetail(${id})">
-            See Details
-          </button>
-        </div>
-      </div>
-      `;
-  }
+  renderJobsCards(filterJobs);
 };
 
 const mainView = () => {
   window.location.href = "index.html";
 };
 // validation ❌
-// const nameValue = $registerJobName.value;
-// const expression = /\w+?\s?\w+?/g;
-// const validation = expression.test(nameValue);
-// console.log(validation);
+const formValidation = () => {
+  const expression = /\w+?\s?\w+?/i;
+
+  return expression.test($registerJobName.value) 
+  && expression.test($registerDescription.value)
+  && expression.test($registerCategory.value)
+  && expression.test($registerSeniority.value)
+  && expression.test($registerLocation.value);
+};
 
 // ************************* events **********************************
 $formCreateJobs.addEventListener("submit", (e) => {
   e.preventDefault();
+  if (!formValidation()) {
+    alert("You must complete all field");
+    return;
+  }
   if (isEditing) {
     const jobId = $btnCreateJob.getAttribute("data-id");
     updateJob(jobId);
-  }
-  // if (!validation) {
-  //   alert("Debes completar el campo");
-  //   return false;
-  // } 
-  else {
+  } else {
     registerJobs();
   }
 });
@@ -241,7 +211,7 @@ $searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   searchJobs();
 });
-$btnSearch.addEventListener("submit", (e) => {
-  e.preventDefault();
+$btnClear.addEventListener("click", () => {
+  $searchForm.reset();
   searchJobs();
 });
