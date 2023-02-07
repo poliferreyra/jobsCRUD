@@ -172,10 +172,6 @@
             </div>
           </form>
         </div>
-        <button
-          class="modal-close is-small has-background-danger"
-          aria-label="close"
-        ></button>
       </div>
       <!-- **************************** edit/delete jobs ******************** -->
       <div class="see-detail m-6"></div>
@@ -185,12 +181,14 @@
         class="notification is-danger is-light container-notification is-hidden mt-6"
       >
         Are you sure to delete this job?
-        <button class="ml-3 is-small button is-danger btn-confirm-delete">
-          Delete
-        </button>
-        <button class="ml-3 is-small button is-dark" onclick="mainView()">
-          Cancel
-        </button>
+        <div class="mt-4">
+          <button class="ml-3 is-small button is-danger btn-confirm-delete">
+            Delete
+          </button>
+          <button class="ml-3 is-small button is-dark" onclick="mainView()">
+            Cancel
+          </button>
+        </div>
       </div>
       </main>
 

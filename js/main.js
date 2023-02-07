@@ -4,7 +4,6 @@ const $ = (selector) => document.querySelector(selector);
 const $createJobNav = $(".create-job-nav");
 const $formCreateJobs = $("#create-job");
 const $createJob = $(".jobsRegister");
-const $modalClose = $(".modal-close");
 const $jobPositions = $("#container-job-positions");
 const $seeDetail = $(".see-detail");
 const $filterSeniority = $("#filterSeniority");
@@ -110,6 +109,7 @@ const openNotification = () => {
 
 // edit select job
 const editJob = async (id) => {
+  $(".validation").classList.add("is-hidden");
   const job = await getJob(id);
   const { jobName, description, location, category, seniority } = job;
   isEditing = true;
@@ -177,7 +177,7 @@ const searchJobs = async () => {
 const mainView = () => {
   window.location.href = "index.html";
 };
-// validation ❌
+// validation
 const formValidation = () => {
   const expression = /\w+?\s?\w+?/i;
 
@@ -205,9 +205,6 @@ $formCreateJobs.addEventListener("submit", (e) => {
 });
 $createJobNav.addEventListener("click", openJobsModal);
 
-$modalClose.addEventListener("click", () => {
-  $createJob.classList.remove("is-active");
-});
 $searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   searchJobs();
